@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<style type="text/css">
+
+    .crystal-image {
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+	<script type="text/javascript" src="assets/javascript.js"></script>
+</head>
+<body>
+	
+		<h1>Number to Guess: <span id="number-to-guess"></span></h1>
+
+		<!-- Note that this div is now empty. We will fill it dynamically -->
+		<div id="crystals">
+		</div>
+<script>
+			
+			var targetNumber = Math.floor(Math.random() * 40) + 1;
+
+$("#number-to-guess").text(targetNumber);
+
+var counter = 0;
+
+var numberOptions = [10, 5, 3, 7];
+
+for (var i = 0; i < numberOptions.length; i++) {
+
+	var imageCrystal = $("<img>");
+
+
+	imageCrystal.addClass("crystal-image");
+
+	imageCrystal.attr("src", "https://jaysanalysis.files.wordpress.com/2014/11/fantasy-crystal2.jpg");
+
+	imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+
+	$("#crystals").append(imageCrystal);
+}
+
+// This time, our click event applies to every single crystal on the page. Not just one.
+$(".crystal-image").on("click", function() {
+
+
+
+	var crystalValue = ($(this).attr("data-crystalvalue"));
+	crystalValue = parseInt(crystalValue);
+
+	counter += crystalValue;
+
+	alert("New score: " + counter);
+
+	if (counter === targetNumber) {
+		alert("You win!");
+	}
+
+	else if (counter >= targetNumber) {
+		alert("You lose!!");
+	}
+
+});
+</script>
+
+
+</body>
+</html>
