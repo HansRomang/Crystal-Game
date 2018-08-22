@@ -87,7 +87,11 @@ $(".crystal-image").on("click", function() {
 		wins++;
     $("#win-lose").html("<h2>Winner!</h2>");
 		$("#wins").html("<h3>" + wins + "</h3>");
-		counter = 0;
+		for (var i = 0; i < 4; i++) {
+			$("crystals")[i].attr("data-crystalvalue", Math.floor(Math.random()*10) + 1);
+
+		}
+
 	}
 
 	else if (counter >= targetNumber) {
@@ -97,8 +101,9 @@ $(".crystal-image").on("click", function() {
 		$("#losses").html("<h3>" + losses + "</h3>");
 		for (var i = 0; i < 4; i++) {
 			$("crystals")[i].attr("data-crystalvalue", Math.floor(Math.random()*10) + 1);
-			counter = 0;
+
 		}
+
 	}
 
 
