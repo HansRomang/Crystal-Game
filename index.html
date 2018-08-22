@@ -24,49 +24,75 @@
 		<!-- Note that this div is now empty. We will fill it dynamically -->
 		<div id="crystals">
 		</div>
+		<div>
+        <h3>Wins: </h3>
+        <span id="wins"></span>
+		</div>
+		<div>
+        <h3>Losses: </h3>
+        <span id="losses"></span>
+    </div>
+
 <script>
 			
-			var targetNumber = Math.floor(Math.random() * 40) + 1;
+			var targetNumber = Math.floor(Math.random() * 40) + 20;
 
 $("#number-to-guess").text(targetNumber);
 
 var counter = 0;
+var wins = 0;
+var losses = 0;
 
-var numberOptions = [10, 5, 3, 7];
+var numberOptions = [1,2,3,4];
 
 for (var i = 0; i < numberOptions.length; i++) {
 
 	var imageCrystal = $("<img>");
 
-
 	imageCrystal.addClass("crystal-image");
 
 	imageCrystal.attr("src", "https://jaysanalysis.files.wordpress.com/2014/11/fantasy-crystal2.jpg");
+ 
 
 	imageCrystal.attr("data-crystalvalue", numberOptions[i]);
 
-	$("#crystals").append(imageCrystal);
-}
 
-// This time, our click event applies to every single crystal on the page. Not just one.
+	$("#crystals").append(imageCrystal);
+
+
+}
+	
+
 $(".crystal-image").on("click", function() {
 
 
 
 	var crystalValue = ($(this).attr("data-crystalvalue"));
+
 	crystalValue = parseInt(crystalValue);
 
-	counter += crystalValue;
+
+	$(".crystal-image").append(crystalValue = Math.floor(Math.random() * 10) + 1);
+  
+
+		counter += crystalValue;
 
 	alert("New score: " + counter);
 
 	if (counter === targetNumber) {
 		alert("You win!");
+		wins++;
+    $("#win-lose").html("<h2>Winner!</h2>");
+    $("#wins").html("<h3>" + wins + "</h3>");
 	}
 
 	else if (counter >= targetNumber) {
 		alert("You lose!!");
+		losses++;
+    $("#win-lose").html("<h2>You lost..</h2>");
+    $("#losses").html("<h3>" + losses + "</h3>");
 	}
+
 
 });
 </script>
