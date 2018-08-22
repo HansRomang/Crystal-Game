@@ -43,17 +43,17 @@ var counter = 0;
 var wins = 0;
 var losses = 0;
 
-var numberOptions = [1,2,3,4];
+var numberOptions = [(Math.floor(Math.random() * 10) + 1), (Math.floor(Math.random() * 10) + 1), (Math.floor(Math.random() * 10) + 1), (Math.floor(Math.random() * 10) + 1)];
+
+var listOfPictures = ["https://jaysanalysis.files.wordpress.com/2014/11/fantasy-crystal2.jpg","http://media.beliefnet.com/~/media/photos/holistic-living/galleries/7-crystals-you-need-to-bring-love-into-your-love-life/crystals_intro.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Amethystemadagascar2.jpg/1200px-Amethystemadagascar2.jpg","https://jaysanalysis.files.wordpress.com/2014/11/fantasy-crystal2.jpg"]
 
 for (var i = 0; i < numberOptions.length; i++) {
-
-	numberOptions[i] =	$(".crystal-image").append(Math.floor(Math.random() * 10) + 1);
 
 	var imageCrystal = $("<img>");
 
 	imageCrystal.addClass("crystal-image");
 
-	imageCrystal.attr("src", "https://jaysanalysis.files.wordpress.com/2014/11/fantasy-crystal2.jpg");
+	imageCrystal.attr("src", listOfPictures[i]);
  
 
 
@@ -86,14 +86,19 @@ $(".crystal-image").on("click", function() {
 		alert("You win!");
 		wins++;
     $("#win-lose").html("<h2>Winner!</h2>");
-    $("#wins").html("<h3>" + wins + "</h3>");
+		$("#wins").html("<h3>" + wins + "</h3>");
+		counter = 0;
 	}
 
 	else if (counter >= targetNumber) {
 		alert("You lose!!");
 		losses++;
     $("#win-lose").html("<h2>You lost..</h2>");
-    $("#losses").html("<h3>" + losses + "</h3>");
+		$("#losses").html("<h3>" + losses + "</h3>");
+		for (var i = 0; i < 4; i++) {
+			$("crystals")[i].attr("data-crystalvalue", Math.floor(Math.random()*10) + 1);
+			counter = 0;
+		}
 	}
 
 
