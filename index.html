@@ -47,12 +47,15 @@ var numberOptions = [1,2,3,4];
 
 for (var i = 0; i < numberOptions.length; i++) {
 
+	numberOptions[i] =	$(".crystal-image").append(Math.floor(Math.random() * 10) + 1);
+
 	var imageCrystal = $("<img>");
 
 	imageCrystal.addClass("crystal-image");
 
 	imageCrystal.attr("src", "https://jaysanalysis.files.wordpress.com/2014/11/fantasy-crystal2.jpg");
  
+
 
 	imageCrystal.attr("data-crystalvalue", numberOptions[i]);
 
@@ -72,7 +75,7 @@ $(".crystal-image").on("click", function() {
 	crystalValue = parseInt(crystalValue);
 
 
-	$(".crystal-image").append(crystalValue = Math.floor(Math.random() * 10) + 1);
+
   
 
 		counter += crystalValue;
